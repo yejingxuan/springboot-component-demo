@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test" id="m1565058957707" name="">
+  <process id="expenseProcess" name="expenseProcess" isExecutable="true" isClosed="false" processType="None">
+    <startEvent id="expenseTask7" name="StartEvent"></startEvent>
+    <userTask id="expenseTask3" name="leader" activiti:candidateUsers="${expenseServiceImpl.findLeader(execution)}"></userTask>
+    <endEvent id="expenseTask8" name="EndEvent"></endEvent>
+    <exclusiveGateway id="expenseTask4" name="leader审批"></exclusiveGateway>
+    <sequenceFlow id="_11" sourceRef="expenseTask3" targetRef="expenseTask4"></sequenceFlow>
+    <userTask id="expenseTask1" name="发起申请" activiti:candidateUsers="${expenseServiceImpl.findSelf(execution)}"></userTask>
+    <sequenceFlow id="_15" sourceRef="expenseTask7" targetRef="expenseTask1"></sequenceFlow>
+    <serviceTask id="expenseTask2" name="update状态为办理中" activiti:expression="#{expenseServiceImpl.changeStatus(execution, 'ing')}"></serviceTask>
+    <sequenceFlow id="_16" sourceRef="expenseTask1" targetRef="expenseTask2"></sequenceFlow>
+    <sequenceFlow id="_18" sourceRef="expenseTask2" targetRef="expenseTask3"></sequenceFlow>
+    <serviceTask id="expenseTask15" name="update状态为完成" activiti:expression="#{expenseServiceImpl.changeStatus(execution, 'pass')}"></serviceTask>
+    <sequenceFlow id="_6" sourceRef="expenseTask4" targetRef="expenseTask15">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${audit=='pass'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_8" sourceRef="expenseTask15" targetRef="expenseTask8"></sequenceFlow>
+    <serviceTask id="expenseTask6" name="update状态为退回" activiti:expression="#{expenseServiceImpl.changeStatus(execution, 'reject')}"></serviceTask>
+    <sequenceFlow id="_12" sourceRef="expenseTask4" targetRef="expenseTask6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${audit=='reject'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_13" sourceRef="expenseTask6" targetRef="expenseTask1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_expenseProcess">
+    <bpmndi:BPMNPlane bpmnElement="expenseProcess" id="BPMNPlane_expenseProcess">
+      <bpmndi:BPMNShape bpmnElement="expenseTask7" id="BPMNShape_expenseTask7">
+        <omgdc:Bounds height="35.0" width="35.0" x="405.0" y="35.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask3" id="BPMNShape_expenseTask3">
+        <omgdc:Bounds height="55.0" width="110.0" x="370.0" y="305.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask8" id="BPMNShape_expenseTask8">
+        <omgdc:Bounds height="35.0" width="35.0" x="405.0" y="570.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask4" id="BPMNShape_expenseTask4">
+        <omgdc:Bounds height="40.0" width="40.0" x="405.0" y="395.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask1" id="BPMNShape_expenseTask1">
+        <omgdc:Bounds height="55.0" width="95.0" x="375.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask2" id="BPMNShape_expenseTask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="370.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask15" id="BPMNShape_expenseTask15">
+        <omgdc:Bounds height="55.0" width="105.0" x="370.0" y="465.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="expenseTask6" id="BPMNShape_expenseTask6">
+        <omgdc:Bounds height="55.0" width="95.0" x="563.0" y="264.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_11" id="BPMNEdge__11">
+        <omgdi:waypoint x="425.0" y="360.0"></omgdi:waypoint>
+        <omgdi:waypoint x="425.0" y="395.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15" id="BPMNEdge__15">
+        <omgdi:waypoint x="422.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="422.0" y="130.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16" id="BPMNEdge__16">
+        <omgdi:waypoint x="422.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="422.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18" id="BPMNEdge__18">
+        <omgdi:waypoint x="422.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="425.0" y="305.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6">
+        <omgdi:waypoint x="425.0" y="435.0"></omgdi:waypoint>
+        <omgdi:waypoint x="422.0" y="465.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8">
+        <omgdi:waypoint x="422.0" y="520.0"></omgdi:waypoint>
+        <omgdi:waypoint x="422.0" y="570.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12" id="BPMNEdge__12">
+        <omgdi:waypoint x="445.0" y="415.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="414.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="365.0"></omgdi:waypoint>
+        <omgdi:waypoint x="610.0" y="319.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13" id="BPMNEdge__13">
+        <omgdi:waypoint x="610.0" y="264.0"></omgdi:waypoint>
+        <omgdi:waypoint x="610.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="470.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
