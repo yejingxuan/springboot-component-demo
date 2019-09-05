@@ -10,9 +10,12 @@ import com.coreos.jetcd.options.GetOption;
 import com.coreos.jetcd.options.PutOption;
 import com.daedafusion.jetcd.EtcdClient;
 import com.yjx.demo.dislock.service.DisLockService;
+import io.swagger.annotations.ApiOperation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,26 +36,83 @@ public class DisLockController {
     @Autowired
     private Client client;
 
+
+
+
+    @ApiOperation(value = "测试redisson可重入锁")
+    @PostMapping(value = "/testRedissonLock")
+    public String testRedissonLock() {
+        try {
+            disLockService.testRedissonLock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+
+    @ApiOperation(value = "测试redisson公平锁")
+    @GetMapping(value = "/testRedissonFairLock")
+    public String testRedissonFairLock(@RequestParam(value = "key") String key) {
+        try {
+            log.info("key:{}", key);
+            disLockService.testRedissonFairLock(key);
+            /*ExecutorService executorService = Executors.newFixedThreadPool(20);
+            for (int i = 0; i<100; i++) {
+                int finalI = i;
+                executorService.execute(() -> {
+                    try {
+                        final int a = finalI;
+                        disLockService.testRedissonFairLock(String.valueOf(a));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+
+
+
+    @ApiOperation(value = "测试zookeeper可重入锁")
+    @PostMapping(value = "/testZkLock")
+    public String testZkLock() {
+        try {
+            //for (int i=0; i<10; i++){
+                disLockService.testZkLock();
+            //}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     @PostMapping(value = "/handleDataByRedisLock")
     public String handleDataByRedisLock() {
         disLockService.handleDataByRedisLock();
         return "success";
     }
 
-
-    @PostMapping(value = "/handleDataByRedissonLock")
-    public String handleDataByRedissonLock() {
-        disLockService.handleDataByRedissonLock();
-        return "success";
-    }
-
-
     @GetMapping(value = "/addEtcdKey")
     public PutResponse addEtcdKey(String key, String value){
         PutResponse putResponse = null;
         try {
-
-
             long id = client.getLeaseClient().grant(1000).get().getID();
             client.getLeaseClient().keepAlive(1000).listen().getID();
             log.info(String.valueOf(id));
@@ -64,7 +124,6 @@ public class DisLockController {
         }catch (Exception e){
             log.error("添加失败", e);
         }
-
         return putResponse;
     }
 

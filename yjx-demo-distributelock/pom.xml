@@ -73,17 +73,24 @@
     </dependency>
 
     <!--redisson集成-->
+
     <dependency>
       <groupId>com.zengtengpeng</groupId>
       <artifactId>redisson-spring-boot-starter</artifactId>
       <version>1.0.3</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson</artifactId>
+      <version>3.11.1</version>
+    </dependency>
+
     <!--zookeeper集成-->
     <dependency>
       <groupId>org.apache.curator</groupId>
       <artifactId>curator-recipes</artifactId>
-      <version>2.9.0</version>
+      <version>2.12.0</version>
     </dependency>
 
     <!--etcd集成-->

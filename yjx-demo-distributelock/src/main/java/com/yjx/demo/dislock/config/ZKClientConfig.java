@@ -15,8 +15,8 @@ public class ZKClientConfig {
     private String zkUrl;
 
     @Bean(value = "zkClient")
-    public CuratorFramework getCuratorFramework(){
-        RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000,3);
+    public CuratorFramework getCuratorFramework() {
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         CuratorFramework client = CuratorFrameworkFactory.newClient(zkUrl, retryPolicy);
         client.start();
         return client;

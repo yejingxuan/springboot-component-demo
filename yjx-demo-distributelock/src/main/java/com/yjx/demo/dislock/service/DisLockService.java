@@ -15,5 +15,13 @@ public interface DisLockService {
      * 通过redisson锁处理数据
      * @return Boolean
      */
-    Boolean handleDataByRedissonLock();
+    Boolean testRedissonLock() throws InterruptedException;
+
+
+
+    Boolean testRedissonFairLock(String key) throws InterruptedException;
+
+
+
+    Boolean testZkLock() throws Exception;
 }
