@@ -1,13 +1,14 @@
-package com.yjx.demo.netty;
+package com.yjx.demo.quizzes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YjxDemoNettyApplication {
+public class YjxDemoQuizzesApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(YjxDemoNettyApplication.class, args);
+        SpringApplication.run(YjxDemoQuizzesApplication.class, args);
     }
+
 
 }

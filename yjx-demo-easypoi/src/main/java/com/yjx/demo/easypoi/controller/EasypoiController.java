@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +60,7 @@ public class EasypoiController {
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567774578215&di=4c39a5c7eb6435c76bb47b747510a373&imgtype=0&src=http%3A%2F%2Ffile.youboy.com%2Fa%2F63%2F26%2F69%2F6%2F7890786.jpg");
 
         entity.setName("高等数学");
-        entity.setMathTeacher(new TeacherEntity("1", "李行", fileByNetwork));
+        entity.setMathTeacher(new TeacherEntity("1", "李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行李行", fileByNetwork));
         entity.setStudents(stus);
         courseEntity.add(entity);
 
@@ -74,6 +75,12 @@ public class EasypoiController {
 
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("计算机一班", "学生"),
                 CourseEntity.class, courseEntity);
+
+        Sheet sheet = workbook.getSheetAt(0);
+
+        // 解决自动设置列宽中文失效的问题
+
+        // sheet.autoSizeColumn(1, true);
 
         try {
             response.setHeader("content-disposition", "attachment;filename=" + URLEncoder

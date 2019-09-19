@@ -14,7 +14,7 @@ public class CourseEntity implements Serializable {
 
     private String id;
 
-    @Excel(name = "课程名称", orderNum = "1", width = 25, needMerge = true)
+    @Excel(name = "课程名称", orderNum = "1", needMerge = true)
     private String name;
 
     @ExcelEntity(id = "absent")
