@@ -1,6 +1,7 @@
 package com.yjx.demo.quickssm.controller;
 
 
+import com.yjx.demo.quickssm.base.PageDto;
 import com.yjx.demo.quickssm.model.pojo.User;
 import com.yjx.demo.quickssm.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -42,6 +43,19 @@ public class UserController {
             log.info("countAllUser query success");
         }catch (Exception e){
             log.error("countAllUser query fail", e);
+        }
+        return res;
+    }
+
+    @ApiOperation(value = "分页查询用户信息")
+    @PostMapping(value = "getPageUsers")
+    public PageDto<User> getPageUsers(PageDto<User> query){
+        PageDto<User> res = new PageDto<>();
+        try {
+            res = userService.getPageUsers(query);
+            log.info("getPageUsers query success");
+        }catch (Exception e){
+            log.error("getPageUsers query fail", e);
         }
         return res;
     }

@@ -47,9 +47,9 @@ public class CustomizeRetryer {
                 .retryIfExceptionOfType(Exception.class)
                 .retryIfException(Predicates.equalTo(new Exception()))
                 .retryIfResult(Predicates.equalTo(false))
-                //等待策略：每次请求间隔1s
+                //等待策略：每次请求间隔0.2秒
                 .withWaitStrategy(WaitStrategies.fixedWait(200, TimeUnit.MILLISECONDS))
-                //停止策略 : 尝试请求6次
+                //停止策略 : 尝试请求9次
                 .withStopStrategy(StopStrategies.stopAfterAttempt(9))
                 .build();
         return msgRetryer;
