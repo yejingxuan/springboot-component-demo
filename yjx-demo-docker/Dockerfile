@@ -11,7 +11,7 @@ ENV TZ Asia/Shanghai
 ARG JAR_FILE
 
 #添加自己的项目到$PRO_PATH
-ADD target/${JAR_FILE}/ $PRO_PATH/
+ADD target/${JAR_FILE}/ $PRO_PATH/app.jar
 
 #暴露端口
 EXPOSE 52002
@@ -20,4 +20,4 @@ EXPOSE 52002
 WORKDIR $PRO_PATH/
 
 #默认运行的命令
-CMD ["java", "-jar", "${JAR_FILE}"]
+CMD ["java", "-jar", "app.jar"]
