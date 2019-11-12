@@ -11,15 +11,15 @@
   </parent>
 
   <groupId>com.yjx</groupId>
-  <artifactId>yjx-demo-retry</artifactId>
+  <artifactId>yjx-demo-docker</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>yjx-demo-retry</name>
-  <description>Demo project for Spring Boot</description>
+  <name>yjx-demo-docker</name>
+  <description>Demo project for Spring Boot and docker</description>
 
   <properties>
     <java.version>1.8</java.version>
-    <docker.image.prefix>retry</docker.image.prefix>
     <docker.registry>com.yjx</docker.registry>
+    <docker.image.prefix>docker-project</docker.image.prefix>
   </properties>
 
   <dependencies>
@@ -33,26 +33,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-    </dependency>
-
-    <!--retry集成-->
-    <dependency>
-      <groupId>com.github.rholder</groupId>
-      <artifactId>guava-retrying</artifactId>
-      <version>2.0.0</version>
-    </dependency>
-
-    <!--二维码生成-->
-    <dependency>
-      <groupId>com.google.zxing</groupId>
-      <artifactId>core</artifactId>
-      <version>3.2.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.google.zxing</groupId>
-      <artifactId>javase</artifactId>
-      <version>3.0.0</version>
     </dependency>
 
     <!--swagger文档集成-->
@@ -75,13 +55,6 @@
       <version>1.16.10</version>
     </dependency>
 
-    <!--fastjson-->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>1.2.58</version>
-    </dependency>
-
   </dependencies>
 
   <build>
@@ -90,7 +63,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-
+      <!--docker插件-->
       <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
@@ -99,7 +72,7 @@
           <repository>${docker.registry}/${docker.image.prefix}/${project.artifactId}</repository>
           <tag>${project.version}</tag> <!-- 不指定tag默认为latest -->
           <buildArgs>
-            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
           </buildArgs>
         </configuration>
       </plugin>
