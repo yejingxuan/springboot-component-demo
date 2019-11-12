@@ -11,13 +11,10 @@ ENV TZ Asia/Shanghai
 ADD target/yjx-demo-retry-0.0.1-SNAPSHOT.jar/ $PRO_PATH/
 
 #暴露端口
-EXPOSE 9990
+EXPOSE 52001
 
 #更改自己的工作目录
 WORKDIR $PRO_PATH/
-
-#目录挂载
-VOLUME /jars
 
 #默认运行的命令
 CMD java -jar yjx-demo-retry-0.0.1-SNAPSHOT.jar

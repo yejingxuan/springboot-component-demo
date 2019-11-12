@@ -19,8 +19,8 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <docker.image.prefix>gf</docker.image.prefix>
-    <docker.registry>yjx</docker.registry>
+    <docker.image.prefix>retry</docker.image.prefix>
+    <docker.registry>com.yjx</docker.registry>
   </properties>
 
   <dependencies>
@@ -98,7 +98,7 @@
         <version>1.4.0</version>
         <configuration>
           <repository>${docker.registry}/${docker.image.prefix}/${project.artifactId}</repository>
-          <!-- <tag>${project.version}</tag> 不指定tag默认为latest -->
+          <tag>${project.version}</tag> <!-- 不指定tag默认为latest -->
           <buildArgs>
             <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
           </buildArgs>
