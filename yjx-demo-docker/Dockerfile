@@ -20,4 +20,4 @@ EXPOSE 52002
 WORKDIR $PRO_PATH/
 
 #默认运行的命令
-CMD java -jar ${JAR_FILE}
+CMD ["java", "-jar", "${JAR_FILE}"]
