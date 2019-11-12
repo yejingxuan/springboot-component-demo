@@ -23,8 +23,8 @@ public class EncryptUtil {
     }
 
     public static void main(String[] args) {
-        String encrypt = EncryptUtil.doEncrypt("", "");
-        String decrypt = EncryptUtil.doDecrypt("", encrypt);
-        System.out.printf("%s, %s", encrypt, decrypt);
+        //String encrypt = EncryptUtil.doEncrypt("jingxuan", "123456");
+        String decrypt = EncryptUtil.doDecrypt("jingxuan", "LFQiXbl5MMgccHsAsJmm7Q==");
+        System.out.printf("%s, %s", "LFQiXbl5MMgccHsAsJmm7Q==", decrypt);
     }
 }

@@ -1,13 +1,14 @@
 package com.yjx.demo.quizzes.thoughtwork.main;
 
 import com.yjx.demo.quizzes.thoughtwork.model.Mon;
+import com.yjx.demo.quizzes.thoughtwork.model.Ticket;
+import com.yjx.demo.quizzes.thoughtwork.service.ProxyBuyService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -15,8 +16,19 @@ public class Test {
 
     public static void main(String[] args) {
         Test test = new Test();
-        System.out.println(test.method4());
+        test.buyTicket();
     }
+
+    public static void buyTicket(){
+        System.out.println("I am busy ,plase xiaoming proxy");
+        ProxyBuyService proxyBuyService = new ProxyBuyService();
+        AtomicReference<Ticket> ticket = new AtomicReference<>(new Ticket());
+        proxyBuyService.proxyBuy(ticketProxy -> {
+            ticket.set(ticketProxy);
+        });
+        System.out.println(ticket.get());
+    }
+
 
     public String method4(){
         System.out.println(Thread.currentThread().getName());
@@ -54,7 +66,6 @@ public class Test {
 
     public static void method2() {
         List<Mon> mons = Arrays.asList(new Mon("001", 1), new Mon("002", 1), new Mon("003", 0));
-
         System.out.println(mons);
 
         Map<Integer, List<Mon>> group = mons.stream()

@@ -1,7 +1,9 @@
 package com.yjx.demo.retry.controller;
 
+import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +44,8 @@ public class TestController {
             System.out.println(e);
             resp = "fail";
         }
+
+
 
         return resp;
     }
