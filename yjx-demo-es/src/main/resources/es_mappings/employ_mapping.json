@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "title": {
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "href": {
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "deadlines": {
+      "type": "keyword"
+    },
+    "header_count": {
+      "type": "keyword"
+    }
+  }
+
+}

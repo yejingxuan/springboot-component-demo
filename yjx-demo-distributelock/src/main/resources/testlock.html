@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+
+<script type="text/javascript">
+    $(function(){
+        for(i=0; i<400; i++){
+            $.ajax({
+                url:"http://localhost:50006/cpt/dislock/testRedissonFairLock?key="+i,
+                async:true,
+                type:"GET",
+                //dataType:"json",
+                headers:{"Authorization":"12334"},
+                success:function(data){
+                    
+                }
+            })
+        }
+        
+    })
+
+</script>
+
+<html>
+    <h3>hello</h3>
+
+
+</html>

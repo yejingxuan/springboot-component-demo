@@ -13,4 +13,13 @@ public class ApplicationConfig {
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
+
+    @Value("${elasticsearch.host}")
+    private String esHost;
+
+    @Value("${elasticsearch.port}")
+    private int esPort;
+
+    @Value("${elasticsearch.clustername}")
+    private String esClusterName;
 }

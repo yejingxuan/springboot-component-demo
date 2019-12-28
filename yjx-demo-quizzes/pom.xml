@@ -33,6 +33,11 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
     <!--lombok集成-->
     <dependency>
       <groupId>org.projectlombok</groupId>

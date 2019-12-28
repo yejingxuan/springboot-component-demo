@@ -1,9 +1,10 @@
 package com.yjx.demo.es.config;
 
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,25 +26,29 @@ public class Swagger2 {
 
     @Bean
     public Docket createRestApi() {
-        log.info("http://localhost:{}{}/swagger-ui.html", config.getPort(), config.getContextPath());
+        String hostAddress = "127.0.0.1";
+        try {
+            hostAddress = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            log.error("获取本地ip出错");
+        }
+        log.info("http://{}:{}{}/swagger-ui.html", hostAddress, config.getPort(), config.getContextPath());
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                //.apis(RequestHandlerSelectors.basePackage("com.yjx.homeweb.project.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yjx.demo"))
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
                 .build();
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("api文档")
+                .title("quick-sentinel的api文档")
                 .description("简单优雅的restful风格")
                 .termsOfServiceUrl("")
                 .version("1.0")
                 .build();
     }
-
-
 
 
 }

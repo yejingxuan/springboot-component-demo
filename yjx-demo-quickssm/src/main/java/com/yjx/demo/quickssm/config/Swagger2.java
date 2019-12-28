@@ -1,6 +1,8 @@
 package com.yjx.demo.quickssm.config;
 
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +26,13 @@ public class Swagger2 {
 
     @Bean
     public Docket createRestApi() {
-        log.info("http://localhost:{}{}/swagger-ui.html", config.getPort(), config.getContextPath());
+        String hostAddress = "127.0.0.1";
+        try {
+            hostAddress = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            log.error("获取本地ip出错");
+        }
+        log.info("http://{}:{}{}/swagger-ui.html", hostAddress, config.getPort(), config.getContextPath());
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
