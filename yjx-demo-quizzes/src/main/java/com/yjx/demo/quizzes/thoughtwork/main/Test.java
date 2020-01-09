@@ -3,6 +3,7 @@ package com.yjx.demo.quizzes.thoughtwork.main;
 import com.yjx.demo.quizzes.thoughtwork.model.Mon;
 import com.yjx.demo.quizzes.thoughtwork.model.Ticket;
 import com.yjx.demo.quizzes.thoughtwork.service.ProxyBuyService;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +12,50 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 public class Test {
 
     public static void main(String[] args) {
         Test test = new Test();
-        test.buyTicket();
+        //test.buyTicket();
+        test.sendGet();
     }
+
+
+
+    public static CloseableHttpResponse sendGet(){
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet("https://www.zhipin.com/");
+        httpGet.setConfig(
+                RequestConfig.custom().setConnectTimeout(3000).setConnectionRequestTimeout(30000)
+                        .setSocketTimeout(30000).build());
+        CloseableHttpResponse httpResponse = null;
+        try {
+            httpResponse = httpClient.execute(httpGet);
+            return httpResponse;
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                // 释放资源
+                if (httpClient != null) {
+                    httpClient.close();
+                }
+                if (httpResponse != null) {
+                    httpResponse.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 
     public static void buyTicket(){
         System.out.println("I am busy ,plase xiaoming proxy");
