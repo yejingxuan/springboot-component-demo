@@ -1,20 +1,34 @@
 {
   "properties": {
-    "title": {
+    "description": {
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "employType": {
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "company": {
       "type": "text",
       "analyzer": "ik_max_word",
       "search_analyzer": "ik_smart"
     },
     "href": {
-      "type": "text",
-      "analyzer": "ik_max_word",
-      "search_analyzer": "ik_smart"
-    },
-    "deadlines": {
       "type": "keyword"
     },
-    "header_count": {
+    "salary": {
       "type": "keyword"
+    },
+    "deadLines": {
+      "type": "keyword"
+    },
+    "headerCount": {
+      "type": "long"
+    },
+    "createTime": {
+      "type": "date"
     }
   }
 

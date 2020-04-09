@@ -29,10 +29,10 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <dependency>
+<!--    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
+    </dependency>-->
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -85,6 +85,12 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.58</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.anumbrella.seaweedfs</groupId>
+      <artifactId>seaweedfs-java-client</artifactId>
+      <version>0.0.2.RELEASE</version>
     </dependency>
 
   </dependencies>

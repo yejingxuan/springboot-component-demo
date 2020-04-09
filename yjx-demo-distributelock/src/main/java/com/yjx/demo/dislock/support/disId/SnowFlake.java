@@ -1,5 +1,9 @@
 package com.yjx.demo.dislock.support.disId;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SnowFlake {
 
     /**
@@ -33,7 +37,15 @@ public class SnowFlake {
     private long sequence = 0L; //序列号
     private long lastStmp = -1L;//上一次时间戳
 
-    public SnowFlake(long datacenterId, long machineId) {
+
+    @Bean
+    public SnowFlake getSnowFlake() {
+        return new SnowFlake();
+    }
+
+    private SnowFlake(){
+        datacenterId = 2L;
+        machineId = 3L;
         if (datacenterId > MAX_DATACENTER_NUM || datacenterId < 0) {
             throw new IllegalArgumentException("datacenterId can't be greater than MAX_DATACENTER_NUM or less than 0");
         }
@@ -88,15 +100,13 @@ public class SnowFlake {
     }
 
     public static void main(String[] args) {
-        SnowFlake snowFlake = new SnowFlake(2, 3);
+        /*SnowFlake snowFlake = new SnowFlake(2, 3);
 
         long start = System.currentTimeMillis();
         for (int i = 0; i < 1000000; i++) {
             System.out.println(snowFlake.nextId());
         }
 
-        System.out.println(System.currentTimeMillis() - start);
-
-
+        System.out.println(System.currentTimeMillis() - start);*/
     }
 }

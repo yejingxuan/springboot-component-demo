@@ -43,7 +43,7 @@ public class Swagger2 {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("quick-sentinel的api文档")
+                .title("es7操作api文档")
                 .description("简单优雅的restful风格")
                 .termsOfServiceUrl("")
                 .version("1.0")
