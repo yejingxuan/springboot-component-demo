@@ -1,16 +1,17 @@
 {
   "properties": {
-    "description": {
-      "type": "text",
-      "analyzer": "ik_max_word",
-      "search_analyzer": "ik_smart"
+    "employInfoId": {
+      "type": "keyword"
     },
     "employType": {
+      "type": "keyword"
+    },
+    "company": {
       "type": "text",
       "analyzer": "ik_max_word",
       "search_analyzer": "ik_smart"
     },
-    "company": {
+    "description": {
       "type": "text",
       "analyzer": "ik_max_word",
       "search_analyzer": "ik_smart"
@@ -18,18 +19,22 @@
     "href": {
       "type": "keyword"
     },
-    "salary": {
-      "type": "keyword"
+    "minSalary": {
+      "type": "long"
+    },
+    "maxSalary": {
+      "type": "long"
     },
     "deadLines": {
-      "type": "keyword"
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
     },
     "headerCount": {
       "type": "long"
     },
     "createTime": {
-      "type": "date"
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
     }
   }
-
 }

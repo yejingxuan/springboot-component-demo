@@ -1,5 +1,6 @@
 package com.yjx.demo.es.controller;
 
+import com.yjx.demo.es.service.EsIndexService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
@@ -27,39 +28,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class EsIndexController {
 
     @Autowired
-    private RestHighLevelClient highLevelClient;
+    private EsIndexService esIndexService;
 
 
     @ApiOperation(value = "创建employ索引")
     @PostMapping(value = "/createEmployIndex")
-    public String createEmployIndex() {
+    public Boolean createEmployIndex() {
+        Boolean res = false;
         try {
-            //初始化mapping
-            Resource resource = new ClassPathResource("es_mappings/employ_mapping.json");
-            byte[] template = IOUtils.toByteArray(resource.getInputStream());
-            String source = new String(template);
-
-            //初始化索引
-            String indexName = "employ_info";
-            CreateIndexRequest indexRequest = new CreateIndexRequest(indexName)
-                    .source(source, XContentType.JSON);
-
-            //创建索引
-            highLevelClient.indices().create(indexRequest, RequestOptions.DEFAULT);
+            res = esIndexService.createEmployIndex();
         } catch (Exception e) {
             log.error("create error", e);
-            return "error";
+            return res;
         }
-        return "success";
+        return res;
     }
 
     @ApiOperation(value = "检测索引是否存在")
-    @GetMapping(value = "/checkIndex")
-    public Boolean checkIndex(String indexName) {
-        GetIndexRequest request = new GetIndexRequest(indexName);
+    @GetMapping(value = "/existsIndex")
+    public Boolean existsIndex(String indexName) {
         Boolean res = false;
         try {
-            res = highLevelClient.indices().exists(request, RequestOptions.DEFAULT);
+            res = esIndexService.existsIndex(indexName);
         } catch (IOException e) {
             log.error("checkIndex异常", e);
         }
@@ -69,13 +59,10 @@ public class EsIndexController {
     @ApiOperation(value = "删除索引")
     @PostMapping(value = "/deleteIndex")
     public Boolean deleteIndex(String indexName) {
-        DeleteIndexRequest request = new DeleteIndexRequest(indexName);
         Boolean res = false;
         try {
-            AcknowledgedResponse rep = highLevelClient.indices()
-                    .delete(request, RequestOptions.DEFAULT);
-            res = rep.isAcknowledged();
-        } catch (IOException e) {
+            res = esIndexService.deleteIndex(indexName);
+        } catch (Exception e) {
             log.error("deleteIndex异常", e);
         }
         return res;

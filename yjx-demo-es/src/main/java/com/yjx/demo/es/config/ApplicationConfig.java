@@ -22,4 +22,14 @@ public class ApplicationConfig {
 
     @Value("${elasticsearch.clustername}")
     private String esClusterName;
+
+    @Value("${elasticsearch.query.highlight.pretags}")
+    private String preTags;
+
+    @Value("${elasticsearch.query.highlight.posttags}")
+    private String postTags;
+
+    @Value("${elasticsearch.query.minimumShouldMatch}")
+    private String minMatch;
+
 }

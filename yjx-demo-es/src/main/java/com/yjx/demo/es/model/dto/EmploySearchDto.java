@@ -1,16 +1,10 @@
-package com.yjx.demo.es.model.es;
+package com.yjx.demo.es.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.sql.Timestamp;
 import java.util.Date;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class EmployEs {
+public class EmploySearchDto {
 
     /**
      * 信息id
@@ -27,10 +21,15 @@ public class EmployEs {
      */
     private String company;
 
+
+    private String highLightCompany;
+
     /**
      * 招聘详情
      */
     private String description;
+
+    private String highLightDescription;
 
     /**
      * 招聘链接

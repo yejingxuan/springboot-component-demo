@@ -72,6 +72,19 @@
       <version>2.6</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.8.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.9.3</version>
+    </dependency>
+
+
     <!--配置文件安全加密-->
     <dependency>
       <groupId>com.github.ulisesbocchio</groupId>
