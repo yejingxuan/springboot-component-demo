@@ -2,6 +2,7 @@ package com.yjx.mbg.config;
 
 import java.util.Date;
 import java.util.Properties;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
@@ -14,10 +15,12 @@ import org.mybatis.generator.internal.DefaultCommentGenerator;
  * 自定义注释生成器
  * Created by macro on 2018/4/26.
  */
+@Slf4j
 public class CommentGenerator extends DefaultCommentGenerator {
 
     private static final String JAVAX_PERSISTENCE_COLUMN_FULL_CLASS_NAME="javax.persistence.Column";
     private static final String JAVAX_PERSISTENCE_TABLE_FULL_CLASS_NAME="javax.persistence.Table";
+    private static final String JAVAX_PERSISTENCE_ID_FULL_CLASS_NAME="javax.persistence.Id";
     private static final String LOMBOK_DATA_FULL_CLASS_NAME="lombok.Data";
 
     /**
@@ -38,6 +41,15 @@ public class CommentGenerator extends DefaultCommentGenerator {
         //获取数据库字段的备注信息
         field.addJavaDocLine(" * "+introspectedColumn.getRemarks());
         field.addJavaDocLine(" */");
+        try {
+            String primaryKey = introspectedTable.getPrimaryKeyColumns().get(0).getActualColumnName();
+            if(introspectedColumn.getActualColumnName().equals(primaryKey)){
+                field.addJavaDocLine("@Id");
+            }
+        } catch (Exception e){
+            log.error("获取主键失败：{}", introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime());
+        }
+
         field.addJavaDocLine("@Column(name = \""+introspectedColumn.getActualColumnName()+"\")");
     }
 
@@ -52,6 +64,7 @@ public class CommentGenerator extends DefaultCommentGenerator {
 
         compilationUnit.addImportedType(new FullyQualifiedJavaType(JAVAX_PERSISTENCE_COLUMN_FULL_CLASS_NAME));
         compilationUnit.addImportedType(new FullyQualifiedJavaType(JAVAX_PERSISTENCE_TABLE_FULL_CLASS_NAME));
+        compilationUnit.addImportedType(new FullyQualifiedJavaType(JAVAX_PERSISTENCE_ID_FULL_CLASS_NAME));
         compilationUnit.addImportedType(new FullyQualifiedJavaType(LOMBOK_DATA_FULL_CLASS_NAME));
     }
 
