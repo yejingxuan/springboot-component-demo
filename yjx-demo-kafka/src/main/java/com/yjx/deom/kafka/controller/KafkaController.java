@@ -31,7 +31,7 @@ public class KafkaController {
     @PutMapping(value = "createTopic")
     public String createTopic(@RequestParam(value = "topicName") String topicName){
         List<NewTopic> topics = new ArrayList();
-        NewTopic topic = new NewTopic(topicName, 1, Short.valueOf("1"));
+        NewTopic topic = new NewTopic(topicName, 2, Short.valueOf("1"));
         Map<String, String> configs = new HashMap<>();
         configs.put("max.message.bytes","4096000");
         topic.configs(configs);

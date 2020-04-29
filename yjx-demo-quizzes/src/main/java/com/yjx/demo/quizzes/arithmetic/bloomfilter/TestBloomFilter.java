@@ -24,8 +24,9 @@ public class TestBloomFilter {
 
         // 匹配不在过滤器中的10000个值，有多少匹配出来
         int count = 0;
-        for (int i = total; i < total + 100000; i++) {
+        for (int i = total; i < total + 1000; i++) {
             if (bf.mightContain(i)) {
+                System.out.println("误伤的值："+i);
                 count++;
             }
         }

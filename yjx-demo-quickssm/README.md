@@ -1,4 +1,3 @@
-# brief introduction
 
 ### yjx-demo-quickssm
 一个快速集成ssm的脚手架。
@@ -7,3 +6,4 @@
 * 数据库mysql
 * swagger文档集成
 * lombak插件集成
+* 配置文件安全加密

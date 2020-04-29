@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping(value = "/testRetry")
-public class TestController {
+public class RetryController {
 
     @Autowired
     private Retryer mailRetryer;

@@ -32,7 +32,7 @@ public class TelnetUtil {
     }
 
     public static void main(String[] args) {
-        String hostname = "47.98.48.32";    // hostname 可以是主机的 IP 或者 域名
+        String hostname = "127.0.0.1";    // hostname 可以是主机的 IP 或者 域名
         int port = 9999;
         int timeout = 200;
         boolean isConnected = telnet(hostname, port, timeout);

@@ -1,13 +1,13 @@
-package com.yjx.mbg;
+package com.yjx.deom.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MbgApplication {
+public class KafkaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MbgApplication.class, args);
+        SpringApplication.run(KafkaApplication.class, args);
     }
 
 }

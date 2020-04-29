@@ -14,7 +14,7 @@ public class SeaweedConfig {
     public FileTemplate fileTemplate(){
         FileTemplate template;
         FileSource fileSource = new FileSource();
-        fileSource.setHost("47.98.48.32");
+        fileSource.setHost("127.0.0.1");
         fileSource.setPort(9333);
         fileSource.setConnectionTimeout(5000);
         try {
