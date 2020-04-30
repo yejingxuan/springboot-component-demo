@@ -3,6 +3,7 @@ package com.yjx.demo.quizzes.test;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class Test1 implements Serializable {
 
@@ -11,9 +12,11 @@ public class Test1 implements Serializable {
     private static SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy.MM.dd");
 
     public static void main(String[] args) {
-        System.out.println(getCurrentDayendTimeMillis());
+         Pattern DEVICE_ID_PATTERN = Pattern.compile("^([0-9]{20})$");
+        System.out.println(DEVICE_ID_PATTERN.matcher("12345678901234567890").matches());
+        /*System.out.println(getCurrentDayendTimeMillis());
         System.out.println(new Date(getCurrentDayendTimeMillis()));
-        System.out.println(new Date(0));
+        System.out.println(new Date(0));*/
     }
 
     public static long getDay(long timestamp) {

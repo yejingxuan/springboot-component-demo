@@ -10,6 +10,7 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 /**
+ * lombok注解集成
  * @author jxye
  */
 public class LombokPlugin extends PluginAdapter {

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -16,6 +18,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@Order(Ordered.LOWEST_PRECEDENCE)
 @Slf4j
 @Configuration
 @EnableSwagger2
@@ -43,8 +46,8 @@ public class Swagger2 {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("rabbitMQ接口文档")
-                .description("rabbitMQ接口文档")
+                .title("RabbitMQ接口文档")
+                .description("RabbitMQ接口文档")
                 .termsOfServiceUrl("")
                 .version("1.0")
                 .build();
