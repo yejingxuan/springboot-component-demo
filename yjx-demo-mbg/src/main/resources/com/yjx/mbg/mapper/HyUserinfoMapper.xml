@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjx.mbg.mapper.HyUserinfoMapper">
+  <resultMap id="BaseResultMap" type="com.yjx.mbg.model.HyUserinfo">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_emali" jdbcType="VARCHAR" property="userEmali" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_IP" jdbcType="VARCHAR" property="userIp" />
+    <result column="user_wechat_id" jdbcType="VARCHAR" property="userWechatId" />
+    <result column="user_qq_id" jdbcType="VARCHAR" property="userQqId" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="user_enable" jdbcType="VARCHAR" property="userEnable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_password, user_emali, user_phone, user_IP, user_wechat_id, 
+    user_qq_id, system_id, user_enable
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hy_userinfo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hy_userinfo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjx.mbg.model.HyUserinfo">
+    insert into hy_userinfo (user_id, user_name, user_password, 
+      user_emali, user_phone, user_IP, 
+      user_wechat_id, user_qq_id, system_id, 
+      user_enable)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userEmali,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userIp,jdbcType=VARCHAR}, 
+      #{userWechatId,jdbcType=VARCHAR}, #{userQqId,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}, 
+      #{userEnable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjx.mbg.model.HyUserinfo">
+    insert into hy_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userEmali != null">
+        user_emali,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userIp != null">
+        user_IP,
+      </if>
+      <if test="userWechatId != null">
+        user_wechat_id,
+      </if>
+      <if test="userQqId != null">
+        user_qq_id,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="userEnable != null">
+        user_enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmali != null">
+        #{userEmali,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null">
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatId != null">
+        #{userWechatId,jdbcType=VARCHAR},
+      </if>
+      <if test="userQqId != null">
+        #{userQqId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="userEnable != null">
+        #{userEnable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjx.mbg.model.HyUserinfo">
+    update hy_userinfo
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmali != null">
+        user_emali = #{userEmali,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null">
+        user_IP = #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatId != null">
+        user_wechat_id = #{userWechatId,jdbcType=VARCHAR},
+      </if>
+      <if test="userQqId != null">
+        user_qq_id = #{userQqId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="userEnable != null">
+        user_enable = #{userEnable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjx.mbg.model.HyUserinfo">
+    update hy_userinfo
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_emali = #{userEmali,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_IP = #{userIp,jdbcType=VARCHAR},
+      user_wechat_id = #{userWechatId,jdbcType=VARCHAR},
+      user_qq_id = #{userQqId,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=VARCHAR},
+      user_enable = #{userEnable,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

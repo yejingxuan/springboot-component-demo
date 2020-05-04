@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjx.mbg.mapper.HySystemMapper">
+  <resultMap id="BaseResultMap" type="com.yjx.mbg.model.HySystem">
+    <id column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="system_name" jdbcType="VARCHAR" property="systemName" />
+    <result column="system_path" jdbcType="VARCHAR" property="systemPath" />
+    <result column="system_create_time" jdbcType="VARCHAR" property="systemCreateTime" />
+    <result column="system_linkman" jdbcType="VARCHAR" property="systemLinkman" />
+    <result column="system_linkway" jdbcType="VARCHAR" property="systemLinkway" />
+    <result column="system_enable" jdbcType="VARCHAR" property="systemEnable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    system_id, system_name, system_path, system_create_time, system_linkman, system_linkway, 
+    system_enable
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hy_system
+    where system_id = #{systemId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hy_system
+    where system_id = #{systemId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjx.mbg.model.HySystem">
+    insert into hy_system (system_id, system_name, system_path, 
+      system_create_time, system_linkman, system_linkway, 
+      system_enable)
+    values (#{systemId,jdbcType=VARCHAR}, #{systemName,jdbcType=VARCHAR}, #{systemPath,jdbcType=VARCHAR}, 
+      #{systemCreateTime,jdbcType=VARCHAR}, #{systemLinkman,jdbcType=VARCHAR}, #{systemLinkway,jdbcType=VARCHAR}, 
+      #{systemEnable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjx.mbg.model.HySystem">
+    insert into hy_system
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="systemName != null">
+        system_name,
+      </if>
+      <if test="systemPath != null">
+        system_path,
+      </if>
+      <if test="systemCreateTime != null">
+        system_create_time,
+      </if>
+      <if test="systemLinkman != null">
+        system_linkman,
+      </if>
+      <if test="systemLinkway != null">
+        system_linkway,
+      </if>
+      <if test="systemEnable != null">
+        system_enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemName != null">
+        #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemPath != null">
+        #{systemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="systemCreateTime != null">
+        #{systemCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="systemLinkman != null">
+        #{systemLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="systemLinkway != null">
+        #{systemLinkway,jdbcType=VARCHAR},
+      </if>
+      <if test="systemEnable != null">
+        #{systemEnable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjx.mbg.model.HySystem">
+    update hy_system
+    <set>
+      <if test="systemName != null">
+        system_name = #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemPath != null">
+        system_path = #{systemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="systemCreateTime != null">
+        system_create_time = #{systemCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="systemLinkman != null">
+        system_linkman = #{systemLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="systemLinkway != null">
+        system_linkway = #{systemLinkway,jdbcType=VARCHAR},
+      </if>
+      <if test="systemEnable != null">
+        system_enable = #{systemEnable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where system_id = #{systemId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjx.mbg.model.HySystem">
+    update hy_system
+    set system_name = #{systemName,jdbcType=VARCHAR},
+      system_path = #{systemPath,jdbcType=VARCHAR},
+      system_create_time = #{systemCreateTime,jdbcType=VARCHAR},
+      system_linkman = #{systemLinkman,jdbcType=VARCHAR},
+      system_linkway = #{systemLinkway,jdbcType=VARCHAR},
+      system_enable = #{systemEnable,jdbcType=VARCHAR}
+    where system_id = #{systemId,jdbcType=VARCHAR}
+  </update>
+</mapper>

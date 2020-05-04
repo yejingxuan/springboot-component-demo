@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjx.mbg.mapper.HyOrderMapper">
+  <resultMap id="BaseResultMap" type="com.yjx.mbg.model.HyOrder">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_retail_price" jdbcType="DOUBLE" property="productRetailPrice" />
+    <result column="contact_way" jdbcType="VARCHAR" property="contactWay" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="user_ip" jdbcType="VARCHAR" property="userIp" />
+    <result column="order_state" jdbcType="VARCHAR" property="orderState" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="total_amount" jdbcType="DOUBLE" property="totalAmount" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="order_enable" jdbcType="VARCHAR" property="orderEnable" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, system_id, product_id, product_retail_price, contact_way, account, number, 
+    user_ip, order_state, user_id, total_amount, create_time, order_enable, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hy_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hy_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjx.mbg.model.HyOrder">
+    insert into hy_order (order_id, system_id, product_id, 
+      product_retail_price, contact_way, account, 
+      number, user_ip, order_state, 
+      user_id, total_amount, create_time, 
+      order_enable, remark)
+    values (#{orderId,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{productRetailPrice,jdbcType=DOUBLE}, #{contactWay,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{userIp,jdbcType=VARCHAR}, #{orderState,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DOUBLE}, #{createTime,jdbcType=VARCHAR}, 
+      #{orderEnable,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjx.mbg.model.HyOrder">
+    insert into hy_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productRetailPrice != null">
+        product_retail_price,
+      </if>
+      <if test="contactWay != null">
+        contact_way,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="userIp != null">
+        user_ip,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="orderEnable != null">
+        order_enable,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productRetailPrice != null">
+        #{productRetailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="contactWay != null">
+        #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="userIp != null">
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderEnable != null">
+        #{orderEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjx.mbg.model.HyOrder">
+    update hy_order
+    <set>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productRetailPrice != null">
+        product_retail_price = #{productRetailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="contactWay != null">
+        contact_way = #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="userIp != null">
+        user_ip = #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderEnable != null">
+        order_enable = #{orderEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjx.mbg.model.HyOrder">
+    update hy_order
+    set system_id = #{systemId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      product_retail_price = #{productRetailPrice,jdbcType=DOUBLE},
+      contact_way = #{contactWay,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      user_ip = #{userIp,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      order_enable = #{orderEnable,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

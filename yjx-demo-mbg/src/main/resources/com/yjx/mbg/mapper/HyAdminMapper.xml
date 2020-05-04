@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjx.mbg.mapper.HyAdminMapper">
+  <resultMap id="BaseResultMap" type="com.yjx.mbg.model.HyAdmin">
+    <id column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="admin_email" jdbcType="VARCHAR" property="adminEmail" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="admin_enable" jdbcType="VARCHAR" property="adminEnable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    admin_id, admin_name, admin_password, system_id, admin_email, update_time, admin_enable
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hy_admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hy_admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjx.mbg.model.HyAdmin">
+    insert into hy_admin (admin_id, admin_name, admin_password, 
+      system_id, admin_email, update_time, 
+      admin_enable)
+    values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, 
+      #{systemId,jdbcType=VARCHAR}, #{adminEmail,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{adminEnable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjx.mbg.model.HyAdmin">
+    insert into hy_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPassword != null">
+        admin_password,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="adminEmail != null">
+        admin_email,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="adminEnable != null">
+        admin_enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null">
+        #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null">
+        #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEnable != null">
+        #{adminEnable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjx.mbg.model.HyAdmin">
+    update hy_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null">
+        admin_password = #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEmail != null">
+        admin_email = #{adminEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="adminEnable != null">
+        admin_enable = #{adminEnable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjx.mbg.model.HyAdmin">
+    update hy_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_password = #{adminPassword,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=VARCHAR},
+      admin_email = #{adminEmail,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      admin_enable = #{adminEnable,jdbcType=VARCHAR}
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+</mapper>

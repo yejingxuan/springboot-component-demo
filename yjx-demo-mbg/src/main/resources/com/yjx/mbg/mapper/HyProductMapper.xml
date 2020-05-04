@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yjx.mbg.mapper.HyProductMapper">
+  <resultMap id="BaseResultMap" type="com.yjx.mbg.model.HyProduct">
+    <id column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="product_retail_price" jdbcType="VARCHAR" property="productRetailPrice" />
+    <result column="product_trade_price" jdbcType="VARCHAR" property="productTradePrice" />
+    <result column="product_inventory" jdbcType="INTEGER" property="productInventory" />
+    <result column="product_create_time" jdbcType="VARCHAR" property="productCreateTime" />
+    <result column="product_category_id" jdbcType="VARCHAR" property="productCategoryId" />
+    <result column="product_enable" jdbcType="VARCHAR" property="productEnable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_id, product_name, system_id, product_retail_price, product_trade_price, product_inventory, 
+    product_create_time, product_category_id, product_enable
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hy_product
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hy_product
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yjx.mbg.model.HyProduct">
+    insert into hy_product (product_id, product_name, system_id, 
+      product_retail_price, product_trade_price, 
+      product_inventory, product_create_time, product_category_id, 
+      product_enable)
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}, 
+      #{productRetailPrice,jdbcType=VARCHAR}, #{productTradePrice,jdbcType=VARCHAR}, 
+      #{productInventory,jdbcType=INTEGER}, #{productCreateTime,jdbcType=VARCHAR}, #{productCategoryId,jdbcType=VARCHAR}, 
+      #{productEnable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjx.mbg.model.HyProduct">
+    insert into hy_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="productRetailPrice != null">
+        product_retail_price,
+      </if>
+      <if test="productTradePrice != null">
+        product_trade_price,
+      </if>
+      <if test="productInventory != null">
+        product_inventory,
+      </if>
+      <if test="productCreateTime != null">
+        product_create_time,
+      </if>
+      <if test="productCategoryId != null">
+        product_category_id,
+      </if>
+      <if test="productEnable != null">
+        product_enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="productRetailPrice != null">
+        #{productRetailPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productTradePrice != null">
+        #{productTradePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productInventory != null">
+        #{productInventory,jdbcType=INTEGER},
+      </if>
+      <if test="productCreateTime != null">
+        #{productCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategoryId != null">
+        #{productCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="productEnable != null">
+        #{productEnable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjx.mbg.model.HyProduct">
+    update hy_product
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="productRetailPrice != null">
+        product_retail_price = #{productRetailPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productTradePrice != null">
+        product_trade_price = #{productTradePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productInventory != null">
+        product_inventory = #{productInventory,jdbcType=INTEGER},
+      </if>
+      <if test="productCreateTime != null">
+        product_create_time = #{productCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategoryId != null">
+        product_category_id = #{productCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="productEnable != null">
+        product_enable = #{productEnable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjx.mbg.model.HyProduct">
+    update hy_product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=VARCHAR},
+      product_retail_price = #{productRetailPrice,jdbcType=VARCHAR},
+      product_trade_price = #{productTradePrice,jdbcType=VARCHAR},
+      product_inventory = #{productInventory,jdbcType=INTEGER},
+      product_create_time = #{productCreateTime,jdbcType=VARCHAR},
+      product_category_id = #{productCategoryId,jdbcType=VARCHAR},
+      product_enable = #{productEnable,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+</mapper>
