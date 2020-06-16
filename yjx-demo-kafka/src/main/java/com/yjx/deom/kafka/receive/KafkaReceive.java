@@ -10,21 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaReceive {
 
-    @KafkaListener(topics = {"yjx-212"}, groupId = "0")
+    @KafkaListener(topics = {"yjx-test3"}, groupId = "0")
     public void listenUser1(ConsumerRecord message){
         log.info("listenUser1:{}",message.value().toString());
     }
 
 
-    @KafkaListener(topics = {"yjx-212"}, groupId = "0")
+/*    @KafkaListener(topics = {"yjx-test3"}, groupId = "0")
     public void listenUser2(ConsumerRecord message){
         log.info("listenUser2:{}",message.value().toString());
-    }
+    }*/
 
-    @KafkaListener(topics = {"yjx-212"}, groupId = "1")
+/*    @KafkaListener(topics = {"yjx-212"}, groupId = "1")
     public void listenUser3(ConsumerRecord message){
         log.info("listenUser3:{}",message.value().toString());
-    }
+    }*/
 
 
 }

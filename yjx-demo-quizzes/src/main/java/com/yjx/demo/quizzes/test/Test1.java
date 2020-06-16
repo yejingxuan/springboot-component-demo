@@ -2,21 +2,70 @@ package com.yjx.demo.quizzes.test;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.Data;
 
+@Data
 public class Test1 implements Serializable {
 
 
     private static final long serialVersionUID = 1194925268379687245L;
     private static SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy.MM.dd");
+    private final static Pattern IP_REGEX = Pattern.compile("(\\d+\\.\\d+\\.\\d+\\.\\d+)");
+    private final static Pattern PORT_REGEX = Pattern.compile("\\:(\\d+)");
+
+    private final static String[] defaultIpAndPort = {"0.0.0.0","80"};
+
+    private Boolean a;
+
 
     public static void main(String[] args) {
-         Pattern DEVICE_ID_PATTERN = Pattern.compile("^([0-9]{20})$");
-        System.out.println(DEVICE_ID_PATTERN.matcher("12345678901234567890").matches());
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add(1);
+
         /*System.out.println(getCurrentDayendTimeMillis());
         System.out.println(new Date(getCurrentDayendTimeMillis()));
         System.out.println(new Date(0));*/
+        //testBool();
+        //testMatch();
+        testMap();
+    }
+
+
+    public static void testMap() {
+        Map<String, String> alreadySend = new ConcurrentHashMap<>();
+        alreadySend.put("123"+null, "123");
+        alreadySend.put("123"+null, "456");
+        System.out.println(alreadySend.toString());
+    }
+
+    public static void testMatch(){
+        String ip = "0.0.0.0";
+        String location = "aa54.12.03.11";
+        Matcher matcher = IP_REGEX.matcher(location);
+        if(ip.equals(defaultIpAndPort[0]) && matcher.find()){
+            ip = matcher.group(1);
+        }
+        System.out.println(ip);
+    }
+
+    public static void testBool(){
+        Test1 test1 = new Test1();
+        if(test1.getA()){
+            System.out.println("true");
+        }
+        System.out.println("false");
+    }
+
+    public static void testPattern () {
+        Pattern DEVICE_ID_PATTERN = Pattern.compile("^([0-9]{20})$");
+        System.out.println(DEVICE_ID_PATTERN.matcher("12345678901234567890").matches());
     }
 
     public static long getDay(long timestamp) {

@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
     public PageDto<User> getPageUsers(PageDto<User> query) {
         PageHelper.startPage(query.getPageNo(), query.getPageSize(), true);
         Page<User> res = userMapper.selectPageUsers(query.getCondition());
-
         return null;
     }
 }
