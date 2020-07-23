@@ -8,10 +8,14 @@ import java.util.LinkedList;
 public class GreedyTest {
 
     public static void main(String[] args) {
-        int[] A = new int[]{2, 0, 4, 1, 2};
+        /*int[] A = new int[]{2, 0, 4, 1, 2};
         int[] B = new int[]{1, 3, 0, 0, 2};
         Solution tjSaiMa = new Solution();
-        System.out.println(Arrays.toString(tjSaiMa.advantageCount(A, B)));
+        System.out.println(Arrays.toString(tjSaiMa.advantageCount(A, B)));*/
+        String str = "123";
+        StringBuffer sBuffer = new StringBuffer(str);
+        sBuffer.reverse();
+
     }
 
 

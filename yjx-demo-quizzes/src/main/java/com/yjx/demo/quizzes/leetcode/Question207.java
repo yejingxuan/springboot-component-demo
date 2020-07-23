@@ -20,7 +20,6 @@ public class Question207 {
             }
         }
         return numCourses == 0;
-
     }
 
 
